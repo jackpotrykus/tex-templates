@@ -1,0 +1,176 @@
+% I. Font encoding and choice
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% To use sans-serif fonts throughout
+\usepackage{sansmathfonts}
+\renewcommand*\familydefault{\sfdefault}
+
+% II. Package imports and settings
+\usepackage{
+    geometry,
+    amsmath,
+    amssymb,
+    amsfonts,
+    amsthm,
+    enumitem,
+    fancyhdr,
+    titlesec,
+    parskip,
+    bbm,
+    listings,
+    color,
+    xcolor,
+    caption,
+    subcaption,
+    etoolbox,
+    booktabs,
+    mathtools,
+    graphicx,
+    hyperref,
+    wrapfig,
+    lastpage,
+    minted,
+    tcolorbox
+}
+
+% Package `geometry`: set margins
+\geometry{
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+}
+
+% Package `hyperref`: setup
+\hypersetup{
+    colorlinks,
+    citecolor=blue,
+    filecolor=blue,
+    linkcolor=blue,
+    urlcolor=blue,
+}
+
+% Package `fancyhdr`: setup
+\makeatletter
+\newcommand\email[1]{\def\@email{#1}}  % creates `\email{...}` topmatter
+\newcommand\idnum[1]{\def\@idnum{#1}}  % creates `\idnum{...}` topmatter
+\pagestyle{fancy}
+\lhead{\@author}
+\chead{\@title}
+\rhead{\@date}
+\lfoot{\@email}
+\cfoot{Page \thepage{} of \hypersetup{linkcolor=.}\pageref{LastPage}}
+\rfoot{\@idnum}
+\makeatother
+
+% Package `minted`: setup
+\usemintedstyle{emacs}
+
+% Package `tcolorbox`: setup, `answer` and `ans` environment declarations
+\tcbuselibrary{many}
+
+% III. Custom symbols and commands
+% Math symbols
+\newcommand{\ints}{\mathbbmss{Z}} % Integers
+\newcommand{\reals}{\mathbbmss{R}} % Reals
+\newcommand{\nats}{\mathbbmss{N}} % Naturals
+\newcommand{\rats}{\mathbbmss{Q}} % Rationals
+\newcommand\iid{\stackrel{\mathclap{\normalfont\mbox{\tiny{\text{iid}}}}}{\sim}} % i.i.d. symbol
+\newcommand\indep{\perp \!\!\!\! \perp} % Independence symbol
+\newcommand\expect{\mathbbmss{E}\bracks*} % Expectation operator
+\newcommand\prob{\mathbbmss{P}\parens*} % Probability operator
+\newcommand\var{\text{Var}\parens*} % Variance operator
+\newcommand\vvar{\mathbbmss{V}\parens*} % Alternate variance operator
+\newcommand\cov{\text{Cov}\parens*} % Covariance operator
+\DeclareMathOperator*{\argmax}{arg\,max} % Argmax
+\DeclareMathOperator*{\argmin}{arg\,min} % Argmin
+
+% Paired delimiters
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+\DeclarePairedDelimiter\parens{\lparen}{\rparen}
+\DeclarePairedDelimiter\bracks{\lbrack}{\rbrack}
+\DeclarePairedDelimiter\braces{\lbrace}{\rbrace}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+% Macro to specify the distribution of for a sequence of random variables
+%   Ex 1: `\distn{X}{k}{Poisson}{\mu}` ==> `X_1, \ldots, X_k \sim \text{Poisson}{\mu}`
+%   Ex 2: `\distn[\iid]{X}{k}{Poisson}{\mu}` ==> `X_1, \ldots, X_k \iid \text{Poisson}{\mu}`
+% Where the `\iid` macro is defined as above
+\newcommand{\distn}[5][\sim]{\ensuremath{
+    {#2}_1, \ldots, {#2}_{#3}~{#1}~\text{{#4}}\left({#5}\right)
+}}
+
+% Abbreviate `\boldsymbol` to `\bs`
+\newcommand{\bs}{\boldsymbol}
+
+% IV. Custom environments
+% Custom theorem environments from package `amstthm`
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem*{conjecture}{Conjecture}
+\newtheorem*{definition}{Definition}
+
+\theoremstyle{definition}
+\newtheorem{question}{Question}
+\newtheorem{problem}{Problem}
+\newtheorem*{example}{Example}
+\newtheorem{exercise}{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{solution}{Solution}
+
+\newtheorem{myexample}{Example}
+\newenvironment{fexample}
+  {\begin{tcolorbox}\begin{fexample}}
+  {\end{fexample}\end{tcolorbox}}
+
+
+% `answer` box: more customizable
+\newtcbtheorem[auto counter, number within = none]{answer}{Answer}{
+    breakable,
+    % color options!
+    % a burnt orange...
+    % colframe=red!75!yellow!75!black, colback = red!45!yellow!20!,
+    % a robust maroon...
+    % colframe=red!45!black, colback = red!10,
+    % a royal purple...
+    % colframe=red!55!blue!55!black, colback=red!7!blue!7!,
+    % or blue.
+    colframe=blue!30!black, colback=blue!10,
+    fonttitle=\bfseries}{x}
+
+% `ans` box: better for the basic use case
+\newenvironment{ans}
+{%
+    \begin{answer*}[parbox=false]{\hfill\null}
+    }{%
+    \end{answer*}
+}
+
+% V. Miscellaneous preferences
+% Set head/foot rule widths
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+% Solid black QED tombstone
+\renewcommand\qedsymbol{$\blacksquare$}
+
+% Allow augmented matrix
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+% Number-within preferences
+% \numberwithin{question}{section}
+\numberwithin{equation}{question}
+
+% Allow `tcolorbox` and other environments to run over page breaks
+\allowdisplaybreaks{}

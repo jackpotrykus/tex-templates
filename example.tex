@@ -1,0 +1,89 @@
+\documentclass[10pt]{extarticle}
+\input{hw_preamble.tex}
+\title{DEPT 10100: Homework 1}
+\author{First Last}
+\date{\today}
+\email{first.last@university.edu}
+\idnum{School ID \#: 000001}
+
+\begin{document}
+
+% Question environment example
+\begin{question}[10pts]
+    Let $X_1 \sim \text{Gamma}(r_1, \lambda)$ and $X_2 \sim \text{Gamma}(r_2, \lambda)$ be independent random variables, and let $Y = X_1 + X_2$ and let $Z = X_1 / (X_1 + X_2)$.
+\end{question}
+Find the joint density of $Y$ and $Z$, and find the marginal densities of $Y$ and $Z$. Identify the distributions of $Y$ and $Z$. Note that $\text{Gamma}(r, \lambda)$ distribution has density function
+    \begin{equation*}
+        f(x)=\frac{\lambda^{r}}{\Gamma(r)} e^{-\lambda x} x^{r-1}, \quad x>0
+    \end{equation*}
+
+% Answer environment example
+\begin{ans}
+    Since $X_1 \indep X_2$, their joint density is the product of their marginal densities.
+    \begin{equation}
+        f_{X_1, X_2}(x_1, x_2) = \frac{\lambda^{r_1 + r_2}}{\Gamma(r_1) \cdot \Gamma(r_2)}\cdot  e^{-\lambda(x_1 + x_2)} \cdot x_1^{r_1 - 1} \cdot x_2^{r_2 - 1}
+    \end{equation}
+    Let $X = [X_1, X_2]^\intercal$. Define
+    \begin{equation}
+        \begin{bmatrix}
+            Y \\
+            Z \\
+        \end{bmatrix} = H(X) = \begin{bmatrix}
+            X_1 + X_2 \\
+            \frac{X_1}{X_1 + X_2}
+        \end{bmatrix}
+    \end{equation}
+    The transformation $H(X)$ has Jacobian matrix
+    \begin{equation}
+        J(H) = \begin{bmatrix}
+            1 & 1 \\
+            \frac{X_2}{(X_1 + X_2)^2} & \frac{-X_1}{(X_1 + X_2)^2}
+        \end{bmatrix}
+    \end{equation}
+    the determinant of which is $-1 / (X_1 + X_2)$. So
+    \begin{align}
+        F_{Y, Z}(y, z) &= \sum_{X : H(X) = [y, z]} \frac{\lambda^{r_1 + r_2}}{\Gamma(r_1) \cdot \Gamma(r_2)}\cdot  e^{-\lambda(x_1 + x_2)} \cdot x_1^{r_1 - 1} \cdot x_2^{r_2 - 1} \cdot \underbrace{(x_1 + x_2)}_{=1 / \abs{\det(J(H))}} \\
+                       &= \frac{\lambda^{r_1 + r_2}}{\Gamma(r_1) \cdot \Gamma(r_2)} \cdot e^{-\lambda(x_1 + x_2)} \cdot x_1^{r_1} \cdot x_2^{r_2} \cdot \frac{x_1 + x_2}{x_1 x_2} \\
+                       &= \frac{\lambda^{r_1 + r_2}}{\Gamma(r_1) \cdot \Gamma(r_2)} \cdot e^{-\lambda y} \cdot (yz)^{r_1} \cdot (y(1 -z))^{r_2} \cdot \frac{1}{yz(1-z)} \\
+                       &= \underbrace{\frac{\lambda^{r_1 + r_2}}{\Gamma(r_1 + r_2)} \cdot e^{-\lambda y} \cdot y^{r_1 + r_2 - 1}}_{\text{Gamma}(r_1 + r_2, \lambda)} \cdot \underbrace{\frac{\Gamma(r_1 + r_2)}{\Gamma(r_1) \cdot \Gamma(r_2)} \cdot z^{r_1 - 1} (1 - z)^{r_2 - 1}}_{\text{Beta}(r_1, r_2)} \label{eqn:1a1}
+    \end{align}
+    So~\ref{eqn:1a1} is the joint probability density of $Y$ and $Z$. Then, we integrate out $y$ and $z$ to obtain their marginal densities. First, note that $y$ has support in $[0, \infty)$, whereas $z$ has support in $(0, 1)$. Next, as the underbraced portions of~\ref{eqn:1a1} note, the joint probability density of $Y$ and $Z$ is the product of two expressions, one in $y$, the other in $z$, each of which is a known probability density. So
+    \begin{align}
+        f_Y(y) &= \frac{\lambda^{r_1 + r_2}}{\Gamma(r_1 + r_2)} \cdot e^{-\lambda y} \cdot y^{r_1 + r_2 - 1} \cdot \int_0^1 \frac{\Gamma(r_1 + r_2)}{\Gamma(r_1) \cdot \Gamma(r_2)} \cdot z^{r_1 - 1} (1 - z)^{r_2 - 1} dz \\
+               &= \frac{\lambda^{r_1 + r_2}}{\Gamma(r_1 + r_2)} \cdot e^{-\lambda y} \cdot y^{r_1 + r_2 - 1}
+    \end{align}
+    and
+    \begin{align}
+        f_Z(z) &= \frac{\Gamma(r_1 + r_2)}{\Gamma(r_1) \cdot \Gamma(r_2)} \cdot z^{r_1 - 1} (1 - z)^{r_2 - 1} \cdot \int_0^\infty \frac{\lambda^{r_1 + r_2}}{\Gamma(r_1 + r_2)} \cdot e^{-\lambda y} \cdot y^{r_1 + r_2 - 1} dy \\
+               &= \frac{\Gamma(r_1 + r_2)}{\Gamma(r_1) \cdot \Gamma(r_2)} \cdot z^{r_1 - 1} (1 - z)^{r_2 - 1}
+    \end{align}
+    So $Y \sim \text{Gamma}(r_1 + r_2, \lambda)$ and $Z \sim \text{Beta}(r_1, r_2)$. Furthermore, since $f_{Y, Z}(y, z) = f_{Y}(y) \cdot f_Z(z)$, $Y \indep Z$.
+\end{ans}
+
+% Code example
+\begin{minted}[breaklines, linenos]{python}
+def egyptian_multiplication(a, n):
+    """
+    Returns the product `a * n`.
+    Assume n is a nonegative integer
+    """
+
+    def is_odd(n):
+        """
+        Returns True if n is odd.
+        """
+        return n & 0x1 == 1
+
+    if n == 1:
+        return a
+    if n == 0:
+        return 0
+
+    if is_odd(n):
+        return egyptian_multiplication(a + a, n // 2) + a
+    else:
+        return egyptian_multiplication(a + a, n // 2)
+\end{minted}
+
+
+\end{document}
