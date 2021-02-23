@@ -94,6 +94,9 @@
 \DeclarePairedDelimiter\braces{\lbrace}{\rbrace}
 \DeclarePairedDelimiter\abs{\lvert}{\rvert}
 
+% Differential operator
+\renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
+
 % Macro to specify the distribution of for a sequence of random variables
 %   Ex 1: `\distn{X}{k}{Poisson}{\mu}` ==> `X_1, \ldots, X_k \sim \text{Poisson}{\mu}`
 %   Ex 2: `\distn[\iid]{X}{k}{Poisson}{\mu}` ==> `X_1, \ldots, X_k \iid \text{Poisson}{\mu}`
@@ -102,8 +105,9 @@
     {#2}_1, \ldots, {#2}_{#3}~{#1}~\text{{#4}}\left({#5}\right)
 }}
 
-% Abbreviate `\boldsymbol` to `\bs`
-\newcommand{\bs}{\boldsymbol}
+\newcommand{\bs}{\boldsymbol} % Abbreviates `\boldsymbol`
+\newcommand{\bsmc}[1]{\bs{\mathcal{#1}}} % Equivalent to `\boldsymbol{\mathcal{...}}`
+\newcommand{\bsov}[1]{\bs{\overline{#1}}} % Equivalent to `\boldsymbol{\overline{...}}`
 
 % IV. Custom environments
 % Custom theorem environments from package `amstthm`
@@ -147,7 +151,7 @@
 % `ans` box: better for the basic use case
 \newenvironment{ans}
 {%
-    \begin{answer*}[parbox=false]{\hfill\null}
+    \begin{answer*}[parbox=false]{}
     }{%
     \end{answer*}
 }
