@@ -156,6 +156,22 @@
     \end{answer*}
 }
 
+% Todo-box. Put a todo-box in your document. It's big and red, and you won't miss it.
+% Use `\todo` to put a box with just "Todo" in it,
+% use `\todo[description]` to put a box with "Todo: description" in it.
+\newcommand{\todo}[1][]{%
+    \begin{tcolorbox}[
+            hbox,
+            colback  = red!20,
+            colframe = red!45,
+        ]
+            \ifstrequal{#1}{}
+            { \bfseries\Large\color{red} Todo }
+            { \bfseries\Large\color{red} Todo: #1 }
+    \end{tcolorbox}
+}
+
+
 % V. Miscellaneous preferences
 % Set head/foot rule widths
 \renewcommand{\headrulewidth}{0.0pt}

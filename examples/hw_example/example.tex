@@ -1,22 +1,23 @@
 \documentclass[10pt]{extarticle}
-\input{hw_preamble.tex}
+\input{../../hw_preamble.tex}
 \title{DEPT 10100: Homework 1}
 \author{First Last}
 \date{\today}
 \email{first.last@university.edu}
 \idnum{School ID \#: 000001}
 
+
 \begin{document}
+
 
 % Question environment example
 \begin{question}[10pts]
     Let $X_1 \sim \text{Gamma}(r_1, \lambda)$ and $X_2 \sim \text{Gamma}(r_2, \lambda)$ be independent random variables, and let $Y = X_1 + X_2$ and let $Z = X_1 / (X_1 + X_2)$.
+    Find the joint density of $Y$ and $Z$, and find the marginal densities of $Y$ and $Z$. Identify the distributions of $Y$ and $Z$. Note that $\text{Gamma}(r, \lambda)$ distribution has density function
+        \begin{equation*}
+            f(x)=\frac{\lambda^{r}}{\Gamma(r)} e^{-\lambda x} x^{r-1}, \quad x>0
+        \end{equation*}
 \end{question}
-Find the joint density of $Y$ and $Z$, and find the marginal densities of $Y$ and $Z$. Identify the distributions of $Y$ and $Z$. Note that $\text{Gamma}(r, \lambda)$ distribution has density function
-    \begin{equation*}
-        f(x)=\frac{\lambda^{r}}{\Gamma(r)} e^{-\lambda x} x^{r-1}, \quad x>0
-    \end{equation*}
-
 % Answer environment example
 \begin{ans}
     Since $X_1 \indep X_2$, their joint density is the product of their marginal densities.
@@ -84,6 +85,13 @@ def egyptian_multiplication(a, n):
     else:
         return egyptian_multiplication(a + a, n // 2)
 \end{minted}
+
+
+% Todo box example
+\todo
+
+% Todo box example with optional argument
+\todo[message]
 
 
 \end{document}
