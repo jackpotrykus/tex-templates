@@ -73,18 +73,22 @@
 % III. Custom symbols and commands
 % Math symbols
 \newcommand{\ints}{\mathbbmss{Z}} % Integers
-\newcommand{\reals}{\mathbbmss{R}} % Reals
-\newcommand{\nats}{\mathbbmss{N}} % Naturals
-\newcommand{\rats}{\mathbbmss{Q}} % Rationals
-\newcommand\iid{\stackrel{\mathclap{\normalfont\mbox{\tiny{\text{iid}}}}}{\sim}} % i.i.d. symbol
-\newcommand\indep{\perp \!\!\!\! \perp} % Independence symbol
-\newcommand\expect{\mathbbmss{E}\bracks*} % Expectation operator
-\newcommand\prob{\mathbbmss{P}\parens*} % Probability operator
-\newcommand\var{\text{Var}\parens*} % Variance operator
-\newcommand\vvar{\mathbbmss{V}\parens*} % Alternate variance operator
-\newcommand\cov{\text{Cov}\parens*} % Covariance operator
-\DeclareMathOperator*{\argmax}{arg\,max} % Argmax
-\DeclareMathOperator*{\argmin}{arg\,min} % Argmin
+\newcommand{\reals}{\mathbbmss{R}}                                                 % Reals
+\newcommand{\nats}{\mathbbmss{N}}                                                  % Naturals
+\newcommand{\rats}{\mathbbmss{Q}}                                                  % Rationals
+\DeclareMathOperator*{\argmax}{arg\,max}                                           % Argmax opertaor
+\DeclareMathOperator*{\argmin}{arg\,min}                                           % Argmin operator
+\newcommand\iid{\stackrel{\mathclap{\normalfont\mbox{\tiny{\text{iid}}}}}{\sim}}   % i.i.d. symbol
+\newcommand\indep{\perp \!\!\!\! \perp}                                            % Independence symbol
+\newcommand\expectsym{\mathbbmss{E}}                                               % Expectation symbol
+\newcommand\probsym{\mathbbmss{P}}                                                 % Probability symbol
+\DeclareMathOperator*{\varsym}{Var}                                                % Variance symbol
+\DeclareMathOperator*{\covsym}{Cov}                                                % Covariance symbol
+\newcommand\prob{\probsym\parens*}                                                 % Probability operator
+\newcommand\expect{\expectsym\bracks*}                                             % Expectation operator
+\newcommand\var{\varsym\parens*}                                                   % Variance operator with ()
+\newcommand\vvar{\mathbbmss{V}\parens*}                                            % Alternate variance operator
+\newcommand\cov{\covsym\parens*}                                                   % Covariance operator
 
 % Paired delimiters
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
@@ -108,6 +112,7 @@
 \newcommand{\bs}{\boldsymbol} % Abbreviates `\boldsymbol`
 \newcommand{\bsmc}[1]{\bs{\mathcal{#1}}} % Equivalent to `\boldsymbol{\mathcal{...}}`
 \newcommand{\bsov}[1]{\bs{\overline{#1}}} % Equivalent to `\boldsymbol{\overline{...}}`
+\newcommand{\bswh}[1]{\bs{\widehat{#1}}} % Equivalent to `\boldsymbol{\mathcal{...}}`
 
 % IV. Custom environments
 % Custom theorem environments from package `amstthm`
