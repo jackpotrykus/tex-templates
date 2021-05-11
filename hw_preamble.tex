@@ -72,23 +72,25 @@
 
 % III. Custom symbols and commands
 % Math symbols
-\newcommand{\ints}{\mathbbmss{Z}} % Integers
-\newcommand{\reals}{\mathbbmss{R}}                                                 % Reals
-\newcommand{\nats}{\mathbbmss{N}}                                                  % Naturals
-\newcommand{\rats}{\mathbbmss{Q}}                                                  % Rationals
-\DeclareMathOperator*{\argmax}{arg\,max}                                           % Argmax opertaor
-\DeclareMathOperator*{\argmin}{arg\,min}                                           % Argmin operator
-\newcommand\iid{\stackrel{\mathclap{\normalfont\mbox{\tiny{\text{iid}}}}}{\sim}}   % i.i.d. symbol
-\newcommand\indep{\perp \!\!\!\! \perp}                                            % Independence symbol
-\newcommand\expectsym{\mathbbmss{E}}                                               % Expectation symbol
-\newcommand\probsym{\mathbbmss{P}}                                                 % Probability symbol
-\DeclareMathOperator*{\varsym}{Var}                                                % Variance symbol
-\DeclareMathOperator*{\covsym}{Cov}                                                % Covariance symbol
-\newcommand\prob{\probsym\parens*}                                                 % Probability operator
-\newcommand\expect{\expectsym\bracks*}                                             % Expectation operator
-\newcommand\var{\varsym\parens*}                                                   % Variance operator with ()
-\newcommand\vvar{\mathbbmss{V}\parens*}                                            % Alternate variance operator
-\newcommand\cov{\covsym\parens*}                                                   % Covariance operator
+\newcommand{\ints}{\mathbbmss{Z}}                                                % Integers
+\newcommand{\reals}{\mathbbmss{R}}                                               % Reals
+\newcommand{\nats}{\mathbbmss{N}}                                                % Naturals
+\newcommand{\rats}{\mathbbmss{Q}}                                                % Rationals
+\DeclareMathOperator*{\argmax}{arg\,max}                                         % Argmax opertaor
+\DeclareMathOperator*{\argmin}{arg\,min}                                         % Argmin operator
+\newcommand\iid{\stackrel{\mathclap{\normalfont\mbox{\tiny{\text{iid}}}}}{\sim}} % i.i.d. symbol
+\newcommand\indep{\perp \!\!\!\! \perp}                                          % Independence symbol
+\newcommand\expectsym{\mathbbmss{E}}                                             % Expectation symbol
+\newcommand\probsym{\mathbbmss{P}}                                               % Probability symbol
+\newcommand\indicator{\mathbbmss{1}}                                             % Indicator symbol
+\newcommand\indic{\indicator\braces*}                                           % Indicator function
+\DeclareMathOperator*{\varsym}{Var}                                              % Variance symbol
+\DeclareMathOperator*{\covsym}{Cov}                                              % Covariance symbol
+\newcommand\prob{\probsym\parens*}                                               % Probability operator
+\newcommand\expect{\expectsym\bracks*}                                           % Expectation operator
+\newcommand\var{\varsym\parens*}                                                 % Variance operator with ()
+\newcommand\vvar{\mathbbmss{V}\parens*}                                          % Alternate variance operator
+\newcommand\cov{\covsym\parens*}                                                 % Covariance operator
 
 % Paired delimiters
 \DeclarePairedDelimiter\ceil{\lceil}{\rceil}
@@ -119,6 +121,11 @@
 \newtheorem{theorem}{Theorem}
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
+% Unnumbered equivalents of the aboive
+\newtheorem*{theoremnn}{Theorem}
+\newtheorem*{lemmann}{Lemma}
+\newtheorem*{corollarynn}{Corollary}
+
 \newtheorem*{conjecture}{Conjecture}
 \newtheorem*{definition}{Definition}
 
